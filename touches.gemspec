@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email         = ["chrgregor@gmail.com"]
   s.summary       = %q{touches a class with has_and_belongs_to_many}
   s.description   = %q{'touch: true' is possible only on belongs_to. This gem makes it possible to touch the instance of class A which has a has_and_belongs_to_many :b relation. Just insert the line 'touches :a' into class B. }
-  s.homepage    = "TODO"
+  s.homepage    = "https://github.com/grgr/touches"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
