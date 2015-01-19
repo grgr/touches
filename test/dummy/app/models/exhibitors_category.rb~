@@ -1,0 +1,2 @@
+class ExhibitorsCategory < ActiveRecord::Base
+end
