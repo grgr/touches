@@ -13,24 +13,24 @@ For new entries to touch the parent, you have to insert touch: true into the joi
 
 = Example
 
-class Category < ActiveRecord::Base
-  has_many :products_categories
-  has_many :products, through: :products_categories
+  class Category < ActiveRecord::Base
+    has_many :products_categories
+    has_many :products, through: :products_categories
 
-  touches :products
-end
+    touches :products
+  end
 
-class Product < ActiveRecord::Base
-  has_many :products_categories
-  has_many :categories, through: :products_categories
+  class Product < ActiveRecord::Base
+    has_many :products_categories
+    has_many :categories, through: :products_categories
 
-  touches :categories
-end
+    touches :categories
+  end
 
-class ProductsCategory < ActiveRecord::Base
-  belongs_to :product, touch: true
-  belongs_to :category, touch: true
-end
+  class ProductsCategory < ActiveRecord::Base
+    belongs_to :product, touch: true
+    belongs_to :category, touch: true
+  end
 
 
 
