@@ -16,9 +16,11 @@ module Touches
 
   module LocalInstanceMethods
     def touch_relations!
-      self.class.touch_relations.each do |rel|
-        self.send(rel, true).each(&:touch)
-      end
+      #unless self.changed.include? "updated_at"
+        self.class.touch_relations.each do |rel|
+          self.send(rel, true).each(&:touch)
+        end
+      #end
     end
   end
 end
