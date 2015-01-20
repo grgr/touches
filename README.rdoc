@@ -2,7 +2,7 @@
 
 has_many through relations do not update timestamps. Touches is to be used to update cached content in some m:n parent:child relationship.
 
-In the example above a category would not update if a contained product updates e.g. its name.
+In the example below a category would not update if a contained product updates e.g. its name.
 
 touches enables bidirectional update of timestamps.
 
