@@ -1,12 +1,14 @@
 = Touches
 
-has_many through relations do not update timestamps. Touches is to be used to update cached content in some m:n parent:child relationship.
+has_many :xs (through) relations do not update x.updated_at. Touches is to be used to update cache_keys in some m:n parent:child relationship.
 
-In the example below a category would not update if a contained product updates e.g. its name.
+In the example below a category would not update if a contained product updates e.g. its name. With the line 'touches :categories' in the Product model all product.categories will be updated.
 
-touches enables bidirectional update of timestamps.
+- Touches enables bidirectional update of updated_at.
+- Touches accepts multiple relations as arguments.
+- Touches does not update the relations given in 'touches :relation, :...' if only updated_at is updated.
 
-For new entries to touch the parent, you have to insert touch: true into the join-model!!
+For new or delted entries to touch the parent, you have to insert touch: true into the join-model!!
 
 
 
@@ -17,7 +19,7 @@ For new entries to touch the parent, you have to insert touch: true into the joi
     has_many :products_categories
     has_many :products, through: :products_categories
 
-    touches :products
+    touches :products, :exhibitors
   end
 
   class Product < ActiveRecord::Base
@@ -32,5 +34,17 @@ For new entries to touch the parent, you have to insert touch: true into the joi
     belongs_to :category, touch: true
   end
 
+
+  class Exhibitor < ActiveRecord::Base
+    has_many :exhibitors_categories
+    has_many :categories, through: :exhibitors_categories
+
+    touches :categories
+  end
+
+  class ExhibitorsCategory < ActiveRecord::Base
+    belongs_to :exhibitor, touch: true
+    belongs_to :category, touch: true
+  end
 
 
