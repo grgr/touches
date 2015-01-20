@@ -1,6 +1,6 @@
 = Touches
 
-has_many :xs (through) relations do not update x.updated_at. Touches is to be used to update cache_keys in some m:n parent:child relationship.
+Parent.has_many :children (through) relations do not update childrens updated_at if some parent-attribute other than updated_at is changed. Touches is to be used to update cache_keys in some m:n parent:child relationship.
 
 In the example below a category would not update if a contained product updates e.g. its name. With the line 'touches :categories' in the Product model all product.categories will be updated.
 
@@ -8,7 +8,7 @@ In the example below a category would not update if a contained product updates 
 - Touches accepts multiple relations as arguments.
 - Touches does not update the relations given in 'touches :relation, :...' if only updated_at is updated.
 
-For new or delted entries to touch the parent, you have to insert touch: true into the join-model!!
+For new or deleted entries to touch the parent, you have to insert touch: true into the join-model!!
 
 
 
